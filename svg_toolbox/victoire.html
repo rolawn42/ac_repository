@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Toolkit</title>
+    <script src="js/tools.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    // <---------------------------- Elements ---------------------------->
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#EEEDEB"
+    let elements = [];
+
+    const w = 25;
+    const h = 25;
+
+    group("dr", "", "fill: #6B2933");
+    rect("dr", 9, 11, w, h, 'transform="rotate(-25, 9, 11)"', '');
+    rect("dr", 43, 56.5, w, h, 'transform="rotate(-25, 43, 56.5)"', '');
+    rect("dr", 57, 45, w, h, 'transform="rotate(5, 57, 45)"', '');
+
+    group("mr", "", "fill: rgba(191, 48, 44, .98)");
+    rect("mr", 30, 4, w, h, 'transform="rotate(-4, 30, 4)"', '');
+    rect("mr", 7, 37, w, h, 'transform="rotate(5, 7, 37)"', '');
+    rect("mr", 54, 81.5, w, h, 'transform="rotate(-43, 54, 81.5)"', '');
+
+    group("lr", "", "fill: #E84139");
+    rect("lr", 8, 33, w, h, 'transform="rotate(-45, 8, 33)"', '');
+    rect("lr", 45, 27, w, h, 'transform="rotate(-10, 45, 27)"', '');
+    rect("lr", 76.5, 68, w, h, 'transform="rotate(20, 76.5, 68)"', '')
+
+    createSVG(0,0,100,100);
+
+</script>
+</html>
