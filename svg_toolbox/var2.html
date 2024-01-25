@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Toolkit</title>
+    <script src="js/tools.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    // <---------------------------- Elements ---------------------------->
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#EEEDEB"
+    let elements = [];
+
+    const w = 25;
+    const h = 25;
+
+    group("dr", "", "fill: #6B2933");
+    group("mr", "", "fill: rgba(191, 48, 44, .98)");
+    group("lr", "", "fill: #E84139");
+
+    let positions =[[9, 11, -25], [43, 56.5, -25], [57, 45, 5], 
+                    [30, 4, -4], [7, 37, 5], [54, 81.5, -43], 
+                    [8, 33, -45], [45, 27, -10], [76.5, 68, 20]];
+
+    let groups = ["dr", "mr", "lr"];
+
+    for(let i = 0; i < 9; i++) {
+        let val = Math.floor(Math.random() * 2);
+        let g = Math.floor(Math.random() * 3)
+        if(val == 0) {
+            circle(groups[g], positions[i][0], positions[i][1], w/2, `transform="rotate(${positions[i][2]}, ${positions[i][0]}, ${positions[i][1]})"`, '');
+        } else {
+            rect(groups[g], positions[i][0], positions[i][1], w, h, `transform="rotate(${positions[i][2]}, ${positions[i][0]}, ${positions[i][1]})"`, '')
+        }
+    }
+
+    createSVG(0,0,100,100);
+
+</script>
+</html>
