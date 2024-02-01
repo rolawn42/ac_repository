@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schotter</title>
+    <script src="/js/tools2.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    //what is (des)ordes? (in terms of svgs)
+        //a set of polylines which form recursive squares
+        //they he a slight variance to their xy position at each point
+        //
+
+    // <---------------------------- Elements ---------------------------->
+
+    //TODO: 
+        //make the displacement and the amount more random
+        //decrease the grid gap
+        //add some random sizes
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#f3f0e8";
+
+    const l = 10; //length
+    const mrgn = 5;
+
+    let i = 0;
+
+    while((l * i) + mrgn < 130*.975) {
+        let j = 0;
+        while((l * j) + mrgn < 250*.975) {
+            drawSquares(i, j);
+            j++;
+        }
+        i++;
+    }
+
+    function drawSquares(i, j) {
+        let x = l * i;
+        let y = l * j;
+
+        let lim = 3.75 * j;
+
+        create("elements", x, y,
+            rotate(Math.floor(Math.random() * lim) - lim/2, [l,l], 
+                rect(l, l, 'fill: none; stroke: #000000; stroke-width: .2')
+            )
+        )
+    }
+
+    createSVG(0, 0, 130, 250);
+    
+</script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desordres</title>
+    <script src="/js/tools2.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    //what is (des)ordes? (in terms of svgs)
+        //a set of polylines which form recursive squares
+        //they he a slight variance to their xy position at each point
+        //
+
+    // <---------------------------- Elements ---------------------------->
+
+    //TODO: 
+        //make the displacement and the amount more random
+        //decrease the grid gap
+        //add some random sizes
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#f3f0e8";
+
+    const length = 16;
+    let i = 0;
+
+    const spc = 1.25;
+    const shr = 1;
+
+    while(length * i + (i * spc) < 400) {
+        let j = 0;
+        while(length * j + (j * spc) < 400) {
+            drawSquares(i, j);
+            j++;
+        }
+        i++;
+    }
+
+    function drawSquares(i, j) {
+        let x = length * i + (i * spc);
+        let y = length * j + (j * spc);
+        let num = 5 + (Math.floor(Math.random() * 3));
+        let d = 5/num;
+
+        for(let k = 0; k < num; k++) {
+            let baseX = createVar(k, d) + (k*shr);
+            let baseY = createVar(k, d) + (k*shr);
+
+            create("elements",
+                x,
+                y,
+                polyline(
+                    `${baseX}, ${baseY}
+                        ${createVar(k, d) + length - (k*shr)}, ${createVar(k, d) + (k*shr)}
+                        ${createVar(k, d) + length - (k*shr)}, ${createVar(k, d) + length-(k*shr)}
+                        ${createVar(k, d) + (k*shr)}, ${createVar(k, d) + length-(k*shr)} 
+                        ${baseX}, ${baseY}`, 
+                    'fill: none; stroke: #000000; stroke-width: .2'
+                )
+            )
+        }
+    }
+
+    function createVar(k, d) {
+        return d - Math.floor(Math.random() * 2) - 1;
+    }
+
+    createSVG(0, 0, 400, 400);
+    
+</script>
+</html>

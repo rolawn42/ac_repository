@@ -11,6 +11,16 @@
         //g (groups)
             //transform="rotate(45, 30, 30) (angle, pivotX, pivotYs)"
             //name = "green"
+    //more on mdn: https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Basic_Shapes
+
+    //transforms:
+        //translate
+        //rotate
+        //scale
+        //skew (also: skewX, skewY)
+        //matrix
+    //more on mdn: https://developer.mozilla.org/en-US/docs/Web/CSS/transform
+
 
     //createSVG
 
@@ -41,7 +51,6 @@
     }
  
     function group(list, other, style) {
-
         elements.push([list, other, style])
     }
 

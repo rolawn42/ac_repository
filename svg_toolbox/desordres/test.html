@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script src="/js/tools2.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    // <---------------------------- Elements ---------------------------->
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#EEEDEB";
+
+    const length = 5;
+    let i = 0;
+
+    while(length * i + (i * 1) < 100) {
+        let j = 0;
+        while(length * j + (j * 1) < 100) {
+            create("elements", length * j + (j * 1), length * i + (i * 1), rect(length, length, 'fill: #000000;'))
+            j++;
+        }
+        i++;
+    }
+
+    create('elements', 20, 20, polyline('10, 15 2, 5 42, 10 10, 15', 'fill: none; stroke: #000000;'));
+
+    createSVG(0, 0, 100, 100);
+    
+</script>
+</html>

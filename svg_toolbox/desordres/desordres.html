@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desordres</title>
+    <script src="/js/tools2.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    //what is (des)ordes? (in terms of svgs)
+        //a set of polylines which form recursive squares
+        //they he a slight variance to their xy position at each point
+        //
+
+    // <---------------------------- Elements ---------------------------->
+
+    //TODO: 
+        //make the displacement and the amount more random
+        //decrease the grid gap
+        //add some random sizes
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#faf6ea";
+
+    const length = 20;
+    let i = 0;
+
+    const sze = 400;
+    const gap = .75;
+
+    while(length * i + (i * gap) + gap*2 < sze * .975) {
+        let j = 0;
+        while(length * j + (j * gap) + gap*2 < sze * .975) {
+            drawSquares(i, j);
+            j++;
+        }
+        i++;
+    }
+
+    function drawSquares(i, j) {
+        let x = length * i + (i * gap) + gap*2;
+        let y = length * j + (j * gap) + gap*2;
+        let num = 8 + (Math.floor(Math.random() * 8));
+
+        for(let k = 0; k < num; k++) {
+            let d = 11/num + vd();
+            console.log(d);
+            //let d = vd(); //displacement
+
+            let baseX = vp() + (k*d);
+            let baseY = vp() + (k*d);
+            let sc; //stroke color
+
+            if(vi()) {
+                sc = "#faf6ea";
+            } else {
+                sc = "#000000";
+            }
+
+            create("elements",
+                x,
+                y,
+                polyline(
+                    `${baseX}, ${baseY}
+                        ${vp() + length - (k*d)}, ${vp() + (k*d)}
+                        ${vp() + length - (k*d)}, ${vp() + length - (k*d)}
+                        ${vp() + (k*d)}, ${vp() + length - (k*d)} 
+                        ${baseX}, ${baseY}`, 
+                    `fill: none; stroke: ${sc}; stroke-width: .25`
+                )
+            )
+        }
+    }
+
+    function vp() { //variation point
+        return (Math.random() * 1.4) - .7;
+    }
+
+    function vd() { //variation displacement
+        return (Math.random() * .5) - .5;
+    }
+
+    function vi() { //variation invisible
+        let r = Math.random();
+        if(r < 0.75) {
+            return false;
+        } else {
+            return true;
+        }
+        
+    }
+
+    createSVG(0, 0, sze, sze);
+    
+</script>
+</html>

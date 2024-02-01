@@ -1,9 +1,0 @@
-This tools I made work by generating a string which will be inserted into the HTML of the project upon opening. 
-
-This is done by having all of the functions which create the elements (named the same as the base tags, so circle, rect, path, polyline, etc) generate a string which is added to a set of lists. There is a main elements list which will be inserted directly into the svg, but groups can also be made which serve as lists in lists, allowing you to create more complexity with groups as well. (tho FYI I didn't add the ability to put groups in groups, but it isn't very hard, it just wasn't necessary yet).
-
-For each of the functions, they all have a universal syntax, its takes the list (group) it goes in, it takes their base parameters (circle: cx, cy, r), then an other string, which will take any optional parameters, and then a style string, which will take any styles. This is true of everything, which is meant to keep it simple and memorable. Right now, rotation is apart of other, but after programing with it I will change that, I wasn't sure if it was worth it, but now after using it I used it enough, it would be easier and it gives me more room to add helpful features.
-
-You also do need to define the body with a query and the elements list, and then at the end call the createSVG method, which will add everything to the svg tag and insert it (you need to define the viewbox for this functions parameters.
-
-Finally, just to touch on the variations, the first one (var1) is just me experimenting with the tools and the way I coded them, and I think I'm going to go back and redo the way I did paths and polylines and make it more interesting. For the second one (var 2), I was testing how easy it was to modify and automate making something, so its a procedural version of Saint-Victoire which changes with each reload (and in that regard it works pretty well (yay!)).

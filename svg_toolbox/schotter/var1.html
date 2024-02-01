@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variation 1</title>
+    <script src="/js/tools2.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    //what is (des)ordes? (in terms of svgs)
+        //a set of polylines which form recursive squares
+        //they he a slight variance to their xy position at each point
+        //
+
+    // <---------------------------- Elements ---------------------------->
+
+    //TODO: 
+        //make the displacement and the amount more random
+        //decrease the grid gap
+        //add some random sizes
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#f3f0e8";
+
+    group("elements", "back", 'transform="translate(120, 105) rotate(30) skewX(-10) skewY(-30)"', 'fill: rgba(0, 0, 0, 0.2)');
+    group("elements", "front", '', 'fill: none; stroke: #000000; stroke-width: .2');
+
+    const l = 10; //length
+    const mrgn = 5;
+
+    const ss = 0.5;
+
+    let i = 0;
+
+    while((l * i) + mrgn < 130*.975) {
+        let j = 0;
+        while((l * j) + mrgn < 250*.975) {
+            drawSquares(i, j);
+            j++;
+        }
+        i++;
+    }
+
+    function drawSquares(i, j) {
+        let x = l * i;
+        let y = l * j;
+
+        let lim = 3.75 * j;
+        let ang = Math.floor(Math.random() * lim) - lim/2;
+
+        create("front", x, y,
+            rotate(ang, [l,l], 
+                rect(l, l, '')
+            )
+        )
+
+        let x2 = l*.75 * i;
+        let y2 = l*.75 * j;
+        let alp = 1/24 * j + 0.1;
+        //fill: rgba(0, 0, 0, ${alp});
+
+        create("back", x2, y2,
+            rotate(ang, [0,0], rect(l*(ss*(j/24)), l*(ss*(j/24)), ``)
+            )
+        )
+
+    }
+
+    createSVG(0, 0, 250, 250);
+    
+</script>
+</html>

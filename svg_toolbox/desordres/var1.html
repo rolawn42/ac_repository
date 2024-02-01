@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desordres</title>
+    <script src="/js/tools2.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    //what is (des)ordes? (in terms of svgs)
+        //a set of polylines which form recursive squares
+        //they he a slight variance to their xy position at each point
+        //
+
+    // <---------------------------- Elements ---------------------------->
+
+    //TODO: 
+        //make the displacement and the amount more random
+        //decrease the grid gap
+        //add some random sizes
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#f3f0e8";
+
+    const length = 16;
+    let i = 0;
+
+    const sze = 400;
+    const gap = 1;
+
+    while(length * i + (i * gap) < sze * .975) {
+        let j = 0;
+        while(length * j + (j * gap) < sze * .975) {
+            drawSquares(i, j);
+            j++;
+        }
+        i++;
+    }
+
+    function drawSquares(i, j) {
+        let x = length * i + (i * gap);
+        let y = length * j + (j * gap);
+        let num = 6 + (Math.floor(Math.random() * 4));
+
+        for(let k = 0; k < num; k++) {
+            let d = vd(); //displacement
+
+            let baseX = vp() + (k*d);
+            let baseY = vp() + (k*d);
+
+            create("elements",
+                x,
+                y,
+                polyline(
+                    `${baseX}, ${baseY}
+                        ${vp() + length - (k*d)}, ${vp() + (k*d)}
+                        ${vp() + length - (k*d)}, ${vp() + length - (k*d)}
+                        ${vp() + (k*d)}, ${vp() + length - (k*d)} 
+                        ${baseX}, ${baseY}`, 
+                    'fill: none; stroke: #000000; stroke-width: .2'
+                )
+            )
+        }
+    }
+
+    function vp() { //variation point
+        return Math.floor(Math.random() * 2) - 1;
+    }
+
+    function vd() { //variation displacement
+        return Math.floor((Math.random() * 1.1) - 1);
+    }
+
+    createSVG(0, 0, sze, sze);
+    
+</script>
+</html>
