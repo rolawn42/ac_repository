@@ -1,0 +1,91 @@
+<!-- Demoing SVG transforms: rotate, translate, scale -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <svg id="theSVG"></svg>
+    <script type="module">
+        // Uses the FastNoise Lite library:
+        // https://github.com/Auburn/FastNoiseLite/tree/master/JavaScript#fastnoise-lite
+        import FastNoiseLite from 'https://unpkg.com/fastnoise-lite@1.1.0/FastNoiseLite.js';
+        
+        let noise = new FastNoiseLite(0);
+        noise.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2);
+        noise.SetFrequency(2.11);
+
+        let width = 500;
+        let height = 500;
+        
+        const rect = (props) => {
+            return `<rect width="${props.width}" height="${props.height}" stroke="black" fill="none"/>`
+        }
+
+        const circle = (props) => {
+            return `<circle r="${props.width / 2}" cx="${props.width / 2}" cy="${props.height / 2}" stroke="black" fill="none"/>`
+        }
+
+        const group = (props, ...elems) => {
+            const propsString = props.transform ? `transform="${props.transform}"` : '';
+            
+            return `
+                <g ${propsString}>
+                    ${elems.join('\n')}
+                </g>
+            `
+        };
+
+        const rotate = (degrees, aboutPoint = [0, 0], elem) => {
+            const props = {
+                transform: `rotate(${degrees}, ${aboutPoint[0]}, ${aboutPoint[1]})`
+            };
+
+            return group(props, elem);
+        };
+
+        const translate = (x, y, elem) => {
+            const props = {
+                transform: `translate(${x}, ${y})`
+            };
+
+            return group(props, elem);
+        };
+
+        let gridWidth = 10;
+        let gridHeight = 10;
+        let jitterFactor = 0.1;
+        const gridOfPoint = Array.from({length: gridWidth + gridHeight})
+            .map((_, i) => {
+                const x = i % gridWidth;
+                const y = Math.floor(i / gridWidth);
+                return [x, y];
+            })
+            .map((point) => {
+                return [point[0] + Math.random() * jitterFactor, 
+                        point[1] + Math.random() * jitterFactor]
+            })
+    
+        const someNoise = noise.GetNoise(5, 6, 0);
+
+        // make a curved path through a few points
+        // const theSvg = group({
+        //     gridOfPoint.map((point) => )
+        // })
+        
+        
+        document.querySelector('svg').outerHTML = `
+            <svg width="${width}" height="${height}">
+                ${theSvg}
+            </svg>
+        `
+
+    </script>
+</body>
+</html>

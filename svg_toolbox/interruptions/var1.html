@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interruptions</title>
+    <script src="/js/tools3.js"></script>
+</head>
+<body>
+</body>
+<script type="module">
+
+    import FastNoiseLite from "../node_modules/fastnoise-lite/FastNoiseLite.js";
+
+    let noise1 = new FastNoiseLite();
+    noise1.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+    noise1.SetSeed(Math.floor(Math.random() * 1000));
+    noise1.SetFrequency(0.2);
+
+    let noise2 = new FastNoiseLite();
+    noise2.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+    noise2.SetSeed(Math.floor(Math.random() * 1000));
+    noise2.SetFrequency(0.2);
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#ffffff";
+
+    const size = 400;
+    const grid = 50;
+    const length = 25;
+    const space = 8;
+
+    const regions = [[1, 1, 0], [0, 1, 0], [0, 0, 1]];
+    group("elements", "lineLightGray", '', 'stroke: rgba(0, 0, 0); stroke-width: 0.9;');
+    group("elements", "lineBlack", '', 'stroke: #bf9b30; stroke-width: 0.7;');
+    
+
+    for(let i = 0; i < grid; i++) {
+        for(let j = 0; j < grid; j++) {
+            if(Math.random() < 0.5) {
+                if(!(noise1.GetNoise(i,j) > 0.01 && findRegion(space * i, space * j))) {
+                    create("lineLightGray", space * i, space * j, rotate(Math.random() * 180, [length/2, 0], line(length, 0, '')));
+                }
+                }
+            else {
+                if(!(noise2.GetNoise(i,j) > 0.01 && findRegion(space * i, space * j))) {
+                    create("lineBlack", space * i, space * j, rotate(Math.random() * 180, [length/2, 0], line(length, 0, '')));
+                }
+            }
+            
+        }
+    }
+
+    function findRegion(x, y) {
+        for(let i = 0; i < regions.length; i++) {
+            for(let j = 0; j < regions[i].length; j++) {
+                if((x > (size/regions.length)*i && x < (size/regions.length)*(i+1)) && 
+                (y > (size/regions[i].length)*j && y < (size/regions[i].length)*(j+1))) {
+                    return 1 //regions[i][j];
+                }
+            }
+        }
+    }
+
+    createSVG(0, 0, size, size);
+    
+</script>
+</html>

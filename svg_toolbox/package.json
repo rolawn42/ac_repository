@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "fastnoise-lite": "^1.1.0"
+  }
+}
