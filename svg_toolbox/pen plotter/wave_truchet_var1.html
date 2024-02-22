@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wave-Var</title>
+    <script src="tools.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    //Basic Wave Truchet
+        //Create the Tile Function
+        //Draw the Grid
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#faf6ea";
+
+    let angles = [0, 90, 180, 270];
+
+    const length = 40;
+    const curve = 15;
+    const sze = 400;
+
+    const offset1 = 1;
+    const offset2 = 2;
+
+    let i = 0;
+
+    while(length * i < sze) {
+        let j = 0;
+        while(length * j < sze) {
+            drawRectangles(i, j);
+            j++;
+        }
+        i++;
+    }
+
+    function drawRectangles(i, j) {
+        let x = length * i + offset1;
+        let y = length * j + offset1;
+
+        let rand = Math.floor(Math.random() * 4);
+        
+        group("elements", `${i}${j}`, '', '');
+        create(`${i}${j}`, x, y, wave1(angles[rand]));
+        create(`${i}${j}`, x, y, wave2(angles[rand]));
+    }
+
+    function wave1(angle) {
+        return rotate(angle, [length/2, length/2], path(`M 0 ${length/2} C ${curve} ${length/2} ${length/2} ${curve} ${length/2} 0`, 'fill: none; stroke: black; stroke-width: 3px'));
+    }
+
+    function wave2(angle) {
+        return rotate(angle, [length/2, length/2], path(`M ${length/2} 0 C ${curve} ${length/2} ${length/2} ${curve} 0 ${length/2}`, 'fill: none; stroke: black; stroke-width: 3px'));
+    }
+
+    createSVG(0, 0, sze + offset2, sze + offset2);
+    
+</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree</title>
+    <script src="tools.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    //Tree Plan
+        //Create Circle Grid
+        //Create the Tree Algorithm
+            //Manually set the range of stroke widths
+            //Use their location (top to bottom) to determine the random displacement from 90 for each line
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#faf6ea";
+
+    let strokeWidths = [[0.2, 0.3, 0.4, 0.3, 0.2],
+                        [0.3, 0.4, 0.5, 0.4, 0.3],
+                        [0.4, 0.5, 0.6, 0.5, 0.4],
+                          [0, 0.6, 0.7, 0.6, 0],
+                            [0, 0, 0.8, 0, 0]];
+
+
+    const length = 50;
+    const usedSize = 0.9;
+    let i = 0;
+
+    const sze = 400;
+    const gap = 7.5;
+    const startGap = 7;
+
+    while(length * i + (i * gap) + gap*startGap < sze * usedSize) {
+        let j = 0;
+        while(length * j + (j * gap) + gap*startGap < sze * usedSize) {
+            drawCircles(i, j);
+            j++;
+        }
+        i++;
+    }
+
+    function drawCircles(i, j) {
+        let x = length * i + (i * gap) + gap*startGap;
+        let y = length * j + (j * gap) + gap*startGap;
+        
+        create("elements", x, y, circle(length/2, 'stroke: black; stroke-width: 1; fill: none'));
+    }
+
+    function vp() { //variation point
+        return (Math.random() * 1.4) - .7;
+    }
+
+    function vd() { //variation displacement
+        return (Math.random() * .5) - .5;
+    }
+
+    function vi() { //variation invisible
+        let r = Math.random();
+        if(r < 0.75) {
+            return false;
+        } else {
+            return true;
+        }
+        
+    }
+
+    createSVG(0, 0, 400, 400);
+    
+</script>
+</html>

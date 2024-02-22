@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lava Lamp</title>
+    <script src="tools.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    //Basic Wave Truchet
+        //Create the Tile Function
+        //Draw the Grid
+
+    //Colors -------------
+
+    //Lava Lamp (Purple, Orange, Yellow)
+    // let backgroundColor = "bf63a6";
+    // let strokeOuter = "f4612d";
+    // let strokeInner = "ffa72f";
+
+    //Lava Lamp Deep Purple(Purple, Orange, Yellow)
+    // let backgroundColor = "800080";
+    // let strokeOuter = "f4612d";
+    // let strokeInner = "ffa72f";
+
+    //Black Lava Lamp (Black, Orange, Yellow)
+    // let backgroundColor = "000000";
+    // let strokeOuter = "f4612d";
+    // let strokeInner = "ffa72f";
+
+    //Order and Chaos (Blue, Grey, Red)
+    // let backgroundColor = "0E274C";
+    // let strokeOuter = "414342";
+    // let strokeInner = "C63837";
+
+    //Black Order and Chaos (Black, Grey, Red)
+    let backgroundColor = "000000";
+    let strokeOuter = "414342";
+    let strokeInner = "C63837";
+
+    //The Rest -----------
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = `#${backgroundColor}`;
+
+    
+
+    let angles = [0, 90, 180, 270];
+
+    const length = 30;
+    const curve = length/4;
+    const sze = 400;
+    const push = 2;
+
+    const offset1 = 1;
+    const offset2 = 2;
+
+    let i = 0;
+
+    group("elements", "outer", '', `stroke: #${strokeOuter}; stroke-width: 3px; fill: none;`)
+    group("elements", "inner", '', `stroke: #${strokeInner}; stroke-width: 3px; fill: none;`)
+
+    while(length * i < sze) {
+        let j = 0;
+        while(length * j < sze) {
+            drawRectangles(i, j);
+            j++;
+        }
+        i++;
+    }
+
+    function drawRectangles(i, j) {
+        let x = length * i + offset1;
+        let y = length * j + offset1;
+
+        let rand = Math.floor(Math.random() * 4);
+        
+        create(`outer`, x, y, wave1(length, angles[rand]));
+        create(`outer`, x, y, wave2(length, angles[rand]));
+        
+        create(`inner`, x - push, y - push, wave1(length - push*2, angles[rand]));
+        create(`inner`, x + push, y + push, wave2(length - push*2, angles[rand]));
+    }
+
+    function wave1(length, angle) {
+        return rotate(angle, [length/2, length/2], path(`M 0 ${length/2} C ${curve} ${length/2} ${length/2} ${curve} ${length/2} 0`, ''));
+    }
+
+    function wave2(length, angle) {
+        return rotate(angle, [length/2, length/2], path(`M ${length/2} ${length} C ${length/2} ${length - curve} ${length - curve} ${length/2} ${length} ${length/2}`, ''));
+    }
+
+    createSVG(0, 0, sze + offset2, sze + offset2);
+    
+</script>
+</html>

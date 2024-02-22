@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangle</title>
+    <script src="tools.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+    //Basic Triangle Truchet
+        //Create the Tile Function
+        //Draw the Grid
+
+    body = document.querySelector("body");
+    body.style.backgroundColor = "#faf6ea";
+
+    let angles = [0, 90, 180, 270];
+
+    const length = 50;
+    const sze = 400;
+    const offset1 = 1;
+    const offset2 = 2;
+    let i = 0;
+
+    while(length * i < sze) {
+        let j = 0;
+        while(length * j < sze) {
+            drawRectangles(i, j);
+            j++;
+        }
+        i++;
+    }
+
+    function drawRectangles(i, j) {
+        let x = length * i + offset1;
+        let y = length * j + offset1;
+        
+        create("elements", x, y, triangle());
+    }
+
+    function triangle() { //variation point
+        let rand = Math.floor(Math.random() * 4);
+
+        return rotate(angles[rand], [length/2, length/2], polyline(`${length} ${length}, ${length/2} ${length/2}, 0 ${length}, ${length} ${length}`, 'fill: none; stroke: black; troke-width: 3px'));
+    }
+
+    createSVG(0, 0, sze + offset2, sze + offset2);
+    
+</script>
+</html>
