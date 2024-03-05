@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="tools.js"></script>
+  <title>Tree</title>
+</head>
+<body>
+<script>
+//Funny string bead looking one
+//   let backgroundColor = "FFFFFF";
+//   let size = 2500;
+//   let div = 2;
+
+//   let iterations = 9;
+
+//   let _linelength = 2;
+//   let _startingPoint = [0,0];
+//   let _angle = 25;
+
+// let add1 = 0;
+// let add2 = 0;
+
+//Weird bead looking thing
+//   let backgroundColor = "FFFFFF";
+//   let size = 5000;
+//   let div = 8;
+
+//   let iterations = 9;
+
+//   let _linelength = 2;
+//   let _startingPoint = [0,0];
+//   let _angle = 3;
+
+// let add1 = 0;
+// let add2 = 0;
+
+//Circley circley
+//   let backgroundColor = "FFFFFF";
+//   let size = 2700;
+//   let div = 5;
+
+//   let add1 = 0;
+//   let add2 = -1400;
+
+//   let iterations = 9;
+
+//   let _linelength = 2;
+//   let _startingPoint = [0,0];
+//   let _angle = 2;
+
+//Meta logo :(
+//   let backgroundColor = "FFFFFF";
+//   let size = 2700;
+//   let div = 5;
+
+//   let add1 = 0;
+//   let add2 = -1750;
+
+//   let iterations = 9;
+
+//   let _linelength = 2;
+//   let _startingPoint = [0,0];
+//   let _angle = 5;
+
+//Less Meta Logo :)
+//   let backgroundColor = "FFFFFF";
+//   let size = 2500;
+//   let div = 5;
+
+//   let add1 = -500;
+//   let add2 = 0;
+
+//   let iterations = 9;
+
+//   let _linelength = 2;
+//   let _startingPoint = [0,0];
+//   let _angle = 7;
+
+//Tubes!
+//   let backgroundColor = "FFFFFF";
+//   let size = 6000;
+//   let div = 5;
+
+//   let add1 = 0;
+//   let add2 = -1000;
+
+//   let iterations = 9;
+
+//   let _linelength = 2;
+//   let _startingPoint = [0,0];
+//   let _angle = 9;
+
+//the life, universe, and everything
+// let backgroundColor = "FFFFFF";
+//   let size = 3000;
+//   let div = 5;
+
+//   let add1 = -900;
+//   let add2 = -1500;
+
+//   let iterations = 9;
+
+//   let _linelength = 2;
+//   let _startingPoint = [0,0];
+//   let _angle = 10;
+
+// It's Garbage
+// let backgroundColor = "FFFFFF";
+//   let size = 4000;
+//   let div = 5;
+
+//   let add1 = 0;
+//   let add2 = -1000;
+
+//   let iterations = 9;
+
+//   let _linelength = 2;
+//   let _startingPoint = [0,0];
+//   let _angle = 17;
+
+//Da Spring
+// let backgroundColor = "FFFFFF";
+//   let size = 7500;
+//   let div = 5;
+
+//   let add1 = 0;
+//   let add2 = -3300;
+
+//   let iterations = 9;
+
+//   let _linelength = 2;
+//   let _startingPoint = [0,0];
+//   let _angle = 19;
+
+//Stars
+// let backgroundColor = "FFFFFF";
+//   let size = 5000;
+//   let div = 10;
+
+//   let add1 = -600;
+//   let add2 = -2300;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 22;
+
+//G?
+// let backgroundColor = "FFFFFF";
+//   let size = 5000;
+//   let div = 10;
+
+//   let add1 = -600;
+//   let add2 = -2300;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 24;
+
+//Rose
+// let backgroundColor = "FFFFFF";
+//   let size = 5000;
+//   let div = 10;
+
+//   let add1 = -600;
+//   let add2 = -2300;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 25;
+
+//Picture of Wrath
+// let backgroundColor = "FFFFFF";
+//   let size = 5000;
+//   let div = 10;
+
+//   let add1 = -1200;
+//   let add2 = -2300;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 28;
+
+//String of Stars
+// let backgroundColor = "FFFFFF";
+//   let size = 5000;
+//   let div = 10;
+
+//   let add1 = 300;
+//   let add2 = -4300;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 29;
+
+//Branch of the Receiver
+// let backgroundColor = "FFFFFF";
+//   let size = 5000;
+//   let div = 10;
+
+//   let add1 = 300;
+//   let add2 = -2300;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 30;
+
+//Butterflies
+// let backgroundColor = "FFFFFF";
+//   let size = 5000;
+//   let div = 10;
+
+//   let add1 = -1000;
+//   let add2 = -4450;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 32;
+
+//Down low
+// let backgroundColor = "FFFFFF";
+//   let size = 3000;
+//   let div = 10;
+
+//   let add1 = 0;
+//   let add2 = -1050;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 33;
+
+//Land of Lillies
+// let backgroundColor = "FFFFFF";
+//   let size = 6000;
+//   let div = 10;
+
+//   let add1 = -2000;
+//   let add2 = -2050;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 34;
+
+//A Headless Crown
+// let backgroundColor = "FFFFFF";
+//   let size = 5000;
+//   let div = 10;
+
+//   let add1 = 0;
+//   let add2 = -3500;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 35;
+
+//The Scream / The Mask
+// let backgroundColor = "FFFFFF";
+//   let size = 2500;
+//   let div = 10;
+
+//   let add1 = 230;
+//   let add2 = -320;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 36;
+
+//None is Gained
+// let backgroundColor = "FFFFFF";
+//   let size = 3500;
+//   let div = 10;
+
+//   let add1 = -1500;
+//   let add2 = -2520;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 37;
+
+//For His Wisdom, Not
+// let backgroundColor = "FFFFFF";
+//   let size = 5500;
+//   let div = 10;
+
+//   let add1 = -500;
+//   let add2 = -2520;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 38;
+
+//For My Best Friend
+// let backgroundColor = "FFFFFF";
+//   let size = 5500;
+//   let div = 10;
+
+//   let add1 = -500;
+//   let add2 = -1520;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 39;
+
+//Center
+// let backgroundColor = "FFFFFF";
+//   let size = 5500;
+//   let div = 10;
+
+//   let add1 = -3500;
+//   let add2 = -2520;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 40;
+
+//Home
+// let backgroundColor = "FFFFFF";
+//   let size = 5500;
+//   let div = 10;
+
+//   let add1 = -2000;
+//   let add2 = -2520;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 42;
+
+//What Remains
+// let backgroundColor = "FFFFFF";
+//   let size = 3500;
+//   let div = 10;
+
+//   let add1 = -500;
+//   let add2 = -2520;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 43;
+
+//In Due Time
+// let backgroundColor = "FFFFFF";
+//   let size = 3500;
+//   let div = 10;
+
+//   let add1 = -1000;
+//   let add2 = -1520;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 45;
+
+//Crack in the Matrix
+// let backgroundColor = "FFFFFF";
+//   let size = 12000;
+//   let div = 10;
+
+//   let add1 = -400;
+//   let add2 = -7520;
+
+//   let iterations = 9;
+
+//   let _linelength = 2.5;
+//   let _startingPoint = [0,0];
+//   let _angle = 90;
+
+  body = document.querySelector("body");
+  body.style.backgroundColor = `#${backgroundColor}`;
+
+  let alphabet = ['X', 'F', '+', '-', '[', ']'];
+  const axiom = 'X';
+  const rules = {
+    'X': 'F+[[X]-X]-F[-FX]+X',
+    'F': 'FF',
+    '-': '-',
+    '+': '+',
+    '[': '[',
+    ']': ']'
+  };
+
+  const iterate_once = (lindenmayerString) => {
+  let newString = '';
+  for (let i = 0; i < lindenmayerString.length; i++) {
+    const result = rules[lindenmayerString[i]];
+    newString += result || lindenmayerString[i];
+  }
+  return newString;
+}
+
+const iterateNTimes = (n, lindenmayerString) => {
+  let newString = lindenmayerString;
+  for (let i = 0; i < n; i++) {
+    newString = iterate_once(newString);
+  }
+  return newString;
+};
+
+//options: angle, starting point, and line length
+const makeVisual = (options, lindenmayerString) => {
+  let theSvgString = '';
+  
+  // Basically constants
+  let angle = (options.angle || 25) * Math.PI / 180;
+  let startingPoint = options.startingPoint || [0, 0];
+  let lineLength = options.lineLength || 10;
+
+  // State
+  let rotation = 0;
+  let points = [startingPoint];
+  let stack = [startingPoint];
+
+  const moveForward = () => {
+    const lastPoint = stack[stack.length - 1];
+
+    const dx = Math.cos(rotation) * lineLength;
+    const dy = Math.sin(rotation) * lineLength;
+
+    stack.push([lastPoint[0] + dx, lastPoint[1] + dy]);
+  };
+
+  const whatToDo = {
+    'F': () => {
+      return moveForward();
+    },
+    'X': () => {
+      return;
+    },
+    '+': () => {
+      rotation = rotation - angle;
+    },
+    '-': () => {
+      rotation = rotation + angle;
+    },
+    '[': () => {
+      points.push(stack[stack.length - 1])
+    },
+    ']': () => {
+      stack = [];
+      stack.push(points[points.length - 1]);
+    }
+  };
+
+  for (let i = 0; i < lindenmayerString.length; i++) {
+    whatToDo[lindenmayerString[i]]();
+  }
+
+  console.log(points.join(' '));
+
+  create('elements', 0, 0, polyline(points.join(' '), 
+    `fill: none; stroke: black; stroke-width: 1px;`));
+  
+  };
+
+  const expanded = iterateNTimes(iterations, axiom);
+
+  const result = makeVisual({
+    lineLength: _linelength,
+    angle: _angle,
+    startingPoint: _startingPoint
+  }, expanded);
+
+  // get result into the svg in the dom
+  createSVG(-size/div + add1, -size/div + add2, size, size);
+
+</script>
+</body>
+</html>

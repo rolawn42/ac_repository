@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="tools.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<script>
+  let backgroundColor = "FFFFFF";
+  let size = 5000;
+  let div = 2;
+
+  let iterations = 10;
+
+  let _linelength = 2;
+  let _startingPoint = [0,0];
+  let _angle = 45;
+
+  body = document.querySelector("body");
+  body.style.backgroundColor = `#${backgroundColor}`;
+
+  let stack = [];
+  let alphabet = ['X', 'F', '+', '-', '[', ']'];
+  const axiom = 'X';
+  const rules = {
+    'X': 'F+[[X]-X]-F[-FX]+X',
+    'F': 'FF',
+    '-': '-',
+    '+': '+',
+    '[': '[',
+    ']': ']'
+  };
+
+  const iterate_once = (lindenmayerString) => {
+  let newString = '';
+  for (let i = 0; i < lindenmayerString.length; i++) {
+    const result = rules[lindenmayerString[i]];
+    newString += result || lindenmayerString[i];
+  }
+  return newString;
+}
+
+const iterateNTimes = (n, lindenmayerString) => {
+  let newString = lindenmayerString;
+  for (let i = 0; i < n; i++) {
+    newString = iterate_once(newString);
+  }
+  return newString;
+};
+
+//options: angle, starting point, and line length
+const makeVisual = (options, lindenmayerString) => {
+  let theSvgString = '';
+  
+  // Basically constants
+  let angle = (options.angle || 25) * Math.PI / 180;
+  let startingPoint = options.startingPoint || [0, 0];
+  let lineLength = options.lineLength || 10;
+
+  // State
+  let rotation = 0;
+  let points = [startingPoint];
+
+  const moveForward = () => {
+    const lastPoint = points[points.length - 1];
+
+    const dx = Math.cos(rotation) * lineLength;
+    const dy = Math.sin(rotation) * lineLength;
+
+    points.push([lastPoint[0] + dx, lastPoint[1] + dy]);
+  };
+
+  const whatToDo = {
+    'F': () => {
+      return moveForward();
+    },
+    'X': () => {
+      return;
+    },
+    '+': () => {
+      rotation = rotation - angle;
+    },
+    '-': () => {
+      rotation = rotation + angle;
+    },
+    '[': () => {
+      stack.push([points[points.length - 1], angle])
+    },
+    ']': () => {
+      let stackPop = stack.pop();
+      points[points.length - 1] = stackPop[0];
+      angle = stackPop[1];
+    }
+  };
+
+  for (let i = 0; i < lindenmayerString.length; i++) {
+    whatToDo[lindenmayerString[i]]();
+  }
+
+  create('elements', 0, 0, polyline(points.join(' '), 
+    `fill: none; stroke: black; stroke-width: 1px;`));
+  
+  };
+
+  const expanded = iterateNTimes(iterations, axiom);
+
+  const result = makeVisual({
+    lineLength: _linelength,
+    angle: _angle,
+    startingPoint: _startingPoint
+  }, expanded);
+
+  // get result into the svg in the dom
+  createSVG(-size/div, -size/div, size, size);
+
+</script>
+</body>
+</html>
